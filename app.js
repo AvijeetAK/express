@@ -1,24 +1,34 @@
-
 const express = require('express');
-
-
 const bodyParser = require('body-parser');
+
+const path = require('path');
 
 const app = express();
 
-const adminRoutes = require('./routes/admin');
+const adminRoute = require('./routes/admin')
 
-const shopRoute = require('./routes/shop');
+const shopRoute = require('./routes/shop')
+
+const contactusRoute = require('./routes/contactus');
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin',adminRoutes);
+app.use('/admin',adminRoute);
 
-app.use('/shop',shopRoute);
+app.use(shopRoute);
 
-app.use((req,res,next) => {
+app.use(contactusRoute);
 
-   res.status(404).send('<h1>Page Not Found<h1>');
+app.use('/success', (req,res,next) => {
+   res.sendFile(path.join(__dirname, 'views', 'success.html'));
 })
 
-app.listen(4000);
+app.use((req,res,next) => {
+   res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+})
+
+
+app.listen(3000);
+
+

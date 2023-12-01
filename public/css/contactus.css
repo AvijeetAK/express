@@ -1,0 +1,23 @@
+.contactus-control input {
+
+    border: 2px solid rgb(213, 129, 26);
+    font: inherit;
+    border-radius: 2px;
+}
+
+
+button {
+
+    font: inherit;
+    border: 1px solid rgb(209, 145, 27);
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+}
+
+button:hover,
+button:active {
+
+    background-color: rgb(85, 0, 85);
+    color: white;
+}
